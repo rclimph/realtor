@@ -1,0 +1,45 @@
+= simple_form_for @property_owner, :html => { :class => "form-horizontal" } do |f|
+  .row
+    .col-lg-10
+      .panel
+        .panel-primary
+          .panel-heading
+            Property Developer or Owner Information
+        .panel-body
+          .row
+            .col-lg-12
+              = f.error_notification
+          .row
+            .col-lg-6
+              = normal_field(f, :company_name, 'Company Name')
+          .row
+            = f.simple_fields_for :address do |a|
+              .row            
+                .col-lg-6
+                  = normal_field(a, :address_1, 'Address Line 1')
+                .col-lg-6
+                  = normal_field(a, :address_2, 'Address Line 2')
+              .row
+                .col-lg-3
+                  = normal_field(a, :city, 'City')
+                .col-lg-3
+                  = normal_field(a, :zip, 'Zip')
+                .col-lg-3
+                  = normal_field(a, :region, 'Province')
+                .col-lg-3
+                  = country_select_field(a, :country, "Country")
+          .row
+            .col-lg-3
+              = normal_field(f, :representative_name, "Representative")
+            .col-lg-3
+              = normal_field(f, :representative_position, "Position")
+            .col-lg-3
+              = normal_field(f, :email, "E-mail Address")
+            .col-lg-3
+              = normal_field(f, :contact_number, "Contact Number")
+          .row.submit-buttons
+            .col-lg-6
+              = f.submit :class => 'btn btn-info'
+              = link_to property_owners_path, :class => 'btn btn-default' do
+                %span.glyphicon.glyphicon-list-alt
+                Back

@@ -1,0 +1,46 @@
+%div.app_wrapper
+  %div.tenant_show
+    .row
+      .col-lg-10         
+        .panel.panel-info
+          .panel-heading
+            .panel-title
+              Building Management
+          .panel-body
+            %dl.dl-horizontal
+              %dt Name:
+              %dd= @building.name
+              %dt Building Type:
+              %dd= @building.building_type
+              %dt Address same as development:
+              %dd= @building.address_same_as_development
+              %dt Address 1:
+              %dd= @building.address.address_1
+              %dt Address 2:
+              %dd= @building.address.address_2
+              %dt City:
+              %dd= @building.address.city
+              %dt Zip:
+              %dd= @building.address.zip
+              %dt Country:
+              %dd= @building.address.country
+            = render 'unit_templates', :building => @building
+            = link_to development_area_path(@development_area), :class => 'btn btn-default' do
+              %span.glyphicon.glyphicon-list-alt
+              Back
+            = link_to edit_development_area_building_path(@development_area, @building), :class => 'btn btn-primary' do
+              %span.glyphicon.glyphicon-pencil
+              Edit
+              
+
+
+.page-header
+  = link_to buildings_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_building_path(@building), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show building
+
+

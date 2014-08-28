@@ -37,7 +37,7 @@ main {
   background-color: #eee;
   padding-bottom: 80px;
   width: 100%;
-  margin-top: 51px; // accommodate the navbar
+  margin-top: 61px; // accommodate the navbar
   }
 section {
   @extend .row;
@@ -67,15 +67,21 @@ section {
 .authform fieldset {
   @extend .well;
 }
-#error_explanation {
+.error_explanation {
   @extend .alert;
   @extend .alert-danger;
 }
-#error_explanation h2 {
-  font-size: 16px;
+.error_explanation h2 {
+  font-size: 100%;
 }
 .button-xs {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-xs;
+}
+
+.panel-body .dl-horizontal dt {
+    float: left;
+    width: 220px;
+    margin-right: 10px;
 }

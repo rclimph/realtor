@@ -1,0 +1,36 @@
+.page-header
+  = link_to new_development_area_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Development area
+  %h1 Listing development_areas
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th.col-sm-1 Name
+        %th.col-sm-2 Address 1
+        %th.col-sm-2 Address 2
+        %th.col-sm-1 City
+        %th.col-sm-1 Province
+        %th.col-sm-1 Zip
+        %th.col-sm-1 Country
+        %th.col-sm-1 Area
+        %th.col-sm-1 Valuation
+        %th.col-sm-1
+    %tbody
+      - @development_areas.each do |development_area|
+        %tr
+          %td= development_area.name
+          %td= development_area.address.address_1
+          %td= development_area.address.address_2
+          %td= development_area.address.city
+          %td= development_area.address.region
+          %td= development_area.address.zip
+          %td= development_area.address.country
+          %td= development_area.area
+          %td= development_area.valuation
+          %td 
+            =link_to('Show', development_area, :class => 'btn btn-default')
+            =link_to('Edit', edit_development_area_path(development_area), :class=>'btn btn-default')
+            =link_to('Destroy', development_area, :data => { confirm: 'Are you sure?'}, :method => :delete, :class => 'btn btn-default')

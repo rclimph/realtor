@@ -1,0 +1,36 @@
+%div.app_wrapper
+  %div.tenant_show
+    .row
+      .col-lg-10         
+        .panel.panel-info
+          .panel-heading
+            .panel-title
+              Development Area Management
+          .panel-body
+            %dl.dl-horizontal
+              %dt Name:
+              %dd= @development_area.name
+              %dt Address 1:
+              %dd= @development_area.address.address_1
+              %dt Address 2:
+              %dd= @development_area.address.address_2
+              %dt City:
+              %dd= @development_area.address.city
+              %dt Province:
+              %dd= @development_area.address.region
+              %dt Zip:
+              %dd= @development_area.address.zip
+              %dt Country:
+              %dd= @development_area.address.country
+              %dt Area:
+              %dd= @development_area.area
+              %dt Valuation:
+              %dd= @development_area.valuation
+            = render 'buildings', :development_area => @development_area
+            = link_to property_owner_path(@property_owner.id), :class => 'btn btn-default' do
+              %span.glyphicon.glyphicon-list-alt
+              Back
+            = link_to edit_property_owner_development_area_path(@property_owner, @development_area), :class => 'btn btn-primary' do
+              %span.glyphicon.glyphicon-pencil
+              Edit
+

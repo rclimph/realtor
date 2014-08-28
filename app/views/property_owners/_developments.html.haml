@@ -1,0 +1,46 @@
+.row
+  .col-lg-10
+    .panel
+      .panel-info
+        .panel-heading
+          Developments
+      .panel-body.gray
+        - n = 0
+        - @property_owner.development_areas.each do |d|
+          - n += 1
+          .row.indented
+            .col-sm-1
+              %span.badge= n.to_s
+            .col-sm-4
+              %strong= d.name
+              %ul.list-unstyled
+                %li= d.address.address_1
+                %li= d.address.address_2
+                %li= d.address.city + ' ' + d.address.region + ' ' + d.address.zip
+                %li= d.address.country
+            .col-sm-4
+              %strong Property Figures
+              %ul.list-unstyled
+                %li 
+                  Area: 
+                  =number_with_precision(d.area, precision: 2, delimiter: ',')
+                  sqm.
+                %li 
+                  Valuation: ₱
+                  =number_with_precision(d.valuation, precision: 2, delimiter: ',')
+          .row.indented
+            .col-sm-1
+            .col-sm-4
+              = link_to edit_property_owner_development_area_path(@property_owner.id, d), :class => 'btn btn-xs btn-default' do
+                Edit
+              = link_to property_owner_development_area_path(@property_owner.id, d), :class => 'btn btn-xs btn-default' do
+                Manage
+              = link_to 'Delete', property_owner_development_area_path(@property_owner.id, d), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
+
+          .row.indented
+            .col-sm-10.bottombordered
+        .row
+          .col-sm-10
+            = link_to new_property_owner_development_area_path(@property_owner.id), :class => 'btn btn-primary' do
+              %span.glyphicon.glyphicon-plus
+              Add New

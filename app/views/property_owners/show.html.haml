@@ -1,0 +1,40 @@
+%div.app_wrapper
+  %div.tenant_show
+    .row
+      .col-lg-10         
+        .panel.panel-info
+          .panel-heading
+            .panel-title
+              Property Owner Information
+          .panel-body
+            %dl.dl-horizontal
+              %dt Company name:
+              %dd= @property_owner.company_name
+              %dt Address 1:
+              %dd= @property_owner.address.address_1
+              %dt Address 2:
+              %dd= @property_owner.address.address_2
+              %dt City:
+              %dd= @property_owner.address.city
+              %dt Zip:
+              %dd= @property_owner.address.zip
+              %dt Country:
+              %dd= @property_owner.address.country
+              %dt Email:
+              %dd= @property_owner.email
+              %dt Contact Number:
+              %dd= @property_owner.contact_number
+              %dt Representative Name:
+              %dd= @property_owner.representative_name
+              %dt Representative Position:
+              %dd= @property_owner.representative_position
+            = render 'developments', :property_owner => @property_owner
+            
+            .row
+              .col-sm-10
+                = link_to property_owners_path, :class => 'btn btn-default' do
+                  %span.glyphicon.glyphicon-list-alt
+                  Back
+                = link_to edit_property_owner_path(@property_owner), :class => 'btn btn-primary' do
+                  %span.glyphicon.glyphicon-pencil
+                  Edit

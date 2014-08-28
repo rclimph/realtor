@@ -1,0 +1,54 @@
+= simple_form_for [@property_owner, @development_area] do |f|
+  -if @development_area.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@development_area.errors.count, "error")} prohibited this development_area from being saved:"
+
+      %ul
+        - @development_area.errors.full_messages.each do |msg|
+          %li= msg
+
+  .row
+    .col-lg-11
+      .panel
+        .panel-primary
+          .panel-heading
+            = "Development Belonging To " + (@property_owner.company_name.blank? ? @property_owner.representative_name : @property_owner.company_name)
+        .panel-body
+          .row
+            .col-lg-12
+              = f.error_notification
+          .row
+            .col-lg-6
+              = normal_field(f, :name, "Name of Development")
+          .row
+            = f.simple_fields_for :address do |a|
+              .row            
+                .col-lg-6
+                  = normal_field(a, :address_1, 'Address Line 1')
+                .col-lg-6
+                  = normal_field(a, :address_2, 'Address Line 2')
+              .row
+                .col-lg-3
+                  = normal_field(a, :city, 'City')
+                .col-lg-3
+                  = normal_field(a, :zip, 'Zip')
+                .col-lg-3
+                  = normal_field(a, :region, 'Province')
+                .col-lg-3
+                  = country_select_field(a, :country, "Country")
+          .row
+            .col-lg-3
+              = f.input :area, :wrapper => :prepend do
+                =f.input_field :area, :class => "form-control", :placeholder => "Area"
+                =content_tag :span, "sqm", :class => "input-group-addon"
+            .col-lg-3
+              =f.input :valuation, :wrapper => :prepend do
+                =content_tag :span, "₱", :class => "input-group-addon"
+                =f.input_field :valuation, :class => "form-control", :placeholder => "Valuation"
+          .row
+            .col-sm-10
+            = f.submit :class => 'btn btn-primary'
+            = link_to property_owner_path(@property_owner.id), :class => 'btn btn-default' do
+              %span.glyphicon.glyphicon-list-alt
+              Cancel

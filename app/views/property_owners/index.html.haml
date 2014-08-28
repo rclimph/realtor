@@ -1,0 +1,34 @@
+.row
+  .col-lg-10
+    .panel
+      .panel-info
+        .panel-heading
+          Property Owner Manifest
+      .panel-body
+        %table.table.table-striped.table-bordered
+          %thead
+            %tr
+              %th.col-sm-2 Company Name
+              %th.col-sm-2 City
+              %th.col-sm-1 Email
+              %th.col-sm-1 Tel
+              %th.col-sm-1 Representative
+              %th.col-sm-1 Position
+              %th
+              %th
+              %th
+          %tbody
+          - @property_owners.each do |property_owner|
+            %tr
+              %td= property_owner.company_name
+              %td= property_owner.address.city
+              %td= property_owner.email
+              %td= property_owner.contact_number
+              %td= property_owner.representative_name
+              %td= property_owner.representative_position
+              %td= link_to 'Show', property_owner, :class => 'btn btn-default'
+              %td= link_to 'Edit', edit_property_owner_path(property_owner), :class => 'btn btn-default'
+              %td= link_to 'Delete', property_owner, :class => 'btn btn-default', :data => { confirm: 'Are you sure?' }, :method => :delete
+        = link_to new_property_owner_path, :class => 'btn btn-primary' do
+          %span.glyphicon.glyphicon-plus
+          New Property owner

@@ -1,0 +1,13 @@
+= simple_form_for(@unit_template) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :unit_type
+    = f.input :furnished
+    = f.input :area
+    = f.input :sqmprice
+    = f.input :unitprice
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,79 @@
+%div.app_wrapper
+  %div.tenant_show
+    .row
+      .col-lg-10         
+        .panel.panel-info
+          .panel-heading
+            .panel-title
+              Corporate Tenant General Information
+          .panel-body
+            %dl.dl-horizontal
+              %dt Company Name:
+              %dd= @t.company_name
+              %dt Business Type:
+              %dd= @t.business_type
+              %dt Address Line 1:
+              %dd= @t.address_1
+              %dt Address Line 2:
+              %dd= @t.address_2
+              %dt City:
+              %dd= @t.city
+              %dt Province and Zip:
+              %dd= @t.province + ' ' + @t.zip
+              %dt Country:
+              %dd= @t.company_country
+          .panel-heading
+            .panel-title
+              Company Representative Information
+          .panel-body
+            %dl.dl-horizontal
+              %dt Representative Name:
+              %dd= @t.representative_salutation + '. ' + @t.representative_first_name + ' ' + @t.representative_last_name
+              %dt Position:
+              %dd= @t.representative_position
+              %dt Country of Citizenship:
+              %dd= @t.representative_country_citizenship
+              %dt Representative Address 1:
+              %dd= @t.representative_address_1
+              %dt Representative Address 2:
+              %dd= @t.representative_address_2
+              %dt City:
+              %dd= @t.representative_city
+              %dt Province and Zip:
+              %dd= @t.representative_province + ' ' + @t.representative_zip
+            %table.table.table-bordered.table-striped 
+              %tr
+                %th.col-sm-1 #
+                %th.col-lg-2 ID Type
+                %th.col-lg-3 ID Number 
+                %th.col-lg-1 Issued On
+                %th.col-lg-1 Expires On
+                %th.col-lg-2 Place of Issue
+              %tr
+                %td 1
+                %td= @t.id_type_1
+                %td= @t.id_number_1
+                %td= @t.id_issued_1
+                %td= @t.id_expiry_1
+                %td= @t.issue_place_1
+              %tr
+                %td 2
+                %td= @t.id_type_2
+                %td= @t.id_number_2
+                %td= @t.id_issued_2
+                %td= @t.id_expiry_2
+                %td= @t.issue_place_2
+              %tr
+                %td 3
+                %td= @t.id_type_3
+                %td= @t.id_number_3
+                %td= @t.id_issued_3
+                %td= @t.id_expiry_3
+                %td= @t.issue_place_3
+            .row
+              .col-lg-8
+                = link_to('Add New', new_corporate_tenant_path, :class => 'btn btn-large btn-default')
+                = link_to('Edit Record', edit_corporate_tenant_path(@t), :class => 'btn btn-large btn-default')
+                = link_to corporate_tenants_path, :class => 'btn btn-large btn-default' do
+                  %span.glyphicon.glyphicon-list-alt
+                  Back

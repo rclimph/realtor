@@ -1,0 +1,105 @@
+= simple_form_for @corporate_tenant, html: { class: 'form-vertical' } do |f|
+  .row
+    .col-lg-10
+      .panel
+        .panel-primary
+          .panel-heading
+            Corporate Tenant Information
+        .panel-body
+          .row
+            .col-lg-12
+              = f.error_notification
+          .row
+            .col-lg-6
+              = normal_field(f, :company_name, 'Company Name')
+            .col-lg-6
+              = normal_field(f, :business_type, 'Business Type')
+          .row
+            .col-lg-6
+              = normal_field(f, :address_1, 'Address Line 1')
+            .col-lg-4
+              = normal_field(f, :address_2, 'Address Line 2')
+            .col-lg-2
+              = normal_field(f, :city, 'City')      
+          .row
+            .col-lg-3
+              = normal_field(f, :province, 'Province')
+            .col-lg-3
+              = normal_field(f, :zip, 'Zip')
+            .col-lg-4
+              = country_select_field(f, :company_country, "Country")
+          .row
+            .col-span-4
+              %h4 Representative Information
+          .row
+            .col-lg-2
+              = radio_buttons_inline(f, :representative_salutation, [ 'Mr', 'Ms', 'Mrs'], 'Salutation')
+          .row
+            .col-lg-2
+              = normal_field(f, :representative_last_name, 'Last Name')
+            .col-lg-2
+              = normal_field(f, :representative_middle_name, 'Middle Name')
+            .col-lg-2
+              = normal_field(f, :representative_first_name, 'First Name')
+            .col-lg-2
+              = normal_field(f, :representative_position, 'Position')
+            .col-lg-3
+              = country_select_field(f, :representative_country_citizenship, 'Citizenship')
+              = f.error :representative_country_citizenship
+          .row
+            .col-lg-6
+              = normal_field(f, :representative_address_1, "Address Line 1")
+            .col-lg-4
+              = normal_field(f, :representative_address_2, "Address Line 2")
+            .col-lg-2
+              = normal_field(f, :representative_city, "City")
+          .row
+            .col-lg-3
+              = normal_field(f, :representative_province, "Province")
+            .col-lg-3
+              = normal_field(f, :representative_zip, "Zip")
+            .col-lg-3
+              = country_select_field(f, :representative_country, "Country")
+    
+          .row
+            .col-span-4
+              %h4 Identification
+            .col-lg-3
+              = select_field(f, :id_type_1, CorporateTenant::ID_TYPES, CorporateTenant::ID_LABEL)
+            .col-lg-3
+              = normal_field(f, :id_number_1, "Identification 1 Number")
+            .col-lg-2
+              = datepicker_field(f, :id_issued_1, 'Issued On')
+            .col-lg-2
+              = datepicker_field(f, :id_expiry_1, 'Expires On')
+            .col-lg-2
+              = normal_field(f, :issue_place_1, 'Place of Issue')
+          .row    
+            .col-lg-3
+              = select_field(f, :id_type_2, CorporateTenant::ID_TYPES, CorporateTenant::ID_LABEL)
+            .col-lg-3
+              = normal_field(f, :id_number_2, "Identification 2 Number")
+            .col-lg-2
+              = datepicker_field(f, :id_issued_2, 'Issued On')
+            .col-lg-2
+              = datepicker_field(f, :id_expiry_2, 'Expires On')
+            .col-lg-2
+              = normal_field(f, :issue_place_2, 'Place of Issue')
+          .row    
+            .col-lg-3
+              = select_field(f, :id_type_3, CorporateTenant::ID_TYPES, CorporateTenant::ID_LABEL)
+            .col-lg-3
+              = normal_field(f, :id_number_3, "Identification 3 Number")
+            .col-lg-2
+              = datepicker_field(f, :id_issued_3, 'Issued On')
+            .col-lg-2
+              = datepicker_field(f, :id_expiry_3, 'Expires On')
+            .col-lg-2
+              = normal_field(f, :issue_place_3, 'Place of Issue')
+          .row.submit-buttons
+            .col-lg-12
+              = f.button :submit, class: "btn btn-info"
+              = link_to corporate_tenants_path, :class => 'btn btn-default' do
+                %span.glyphicon.glyphicon-list-alt
+                Cancel
+      

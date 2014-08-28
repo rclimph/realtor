@@ -1,0 +1,50 @@
+.row
+  .col-lg-10
+    .panel
+      .panel-info
+        .panel-heading
+          Buildings
+      .panel-body.gray
+        - n = 0
+        - @development_area.buildings.each do |b|
+          - n += 1
+          .row.indented
+            .col-sm-1
+              %span.badge= n.to_s
+            .col-sm-8
+              %strong= b.name
+              %dl.dl-horizontal
+                %dt Building Type:
+                %dd= b.building_type
+                %dt Lowest Floor:
+                %dd= b.lowest_floor_humanized
+                %dt Highest Floor:
+                %dd= b.highest_floor_humanized
+                %dt Address Line 1:
+                %dd= b.address.address_1
+                %dt Address Line 2:
+                %dd= b.address.address_2
+                %dt City:
+                %dd= b.address.city
+                %dt Region:
+                %dd= b.address.region
+                %dt Zip:
+                %dd= b.address.zip
+                %dt Country:
+                %dd= b.address.country
+          .row.indented
+            .col-sm-1
+            .col-sm-8
+              = link_to edit_development_area_building_path(@development_area.id, b), :class => 'btn btn-xs btn-default' do
+                Edit
+              = link_to development_area_building_path(@development_area.id, b), :class => 'btn btn-xs btn-default' do
+                Manage
+              = link_to 'Delete', development_area_building_path(@development_area.id, b), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
+
+          .row.indented
+            .col-sm-10.bottombordered
+        .row
+          .col-sm-10
+            = link_to new_development_area_building_path(@development_area.id), :class => 'btn btn-primary' do
+              %span.glyphicon.glyphicon-plus
+              Add New

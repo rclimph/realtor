@@ -1,0 +1,32 @@
+.page-header
+  = link_to new_unit_template_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Unit template
+  %h1 Listing unit_templates
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Type
+        %th Furnished
+        %th Area
+        %th Sqmprice
+        %th Unitprice
+        %th
+        %th
+        %th
+
+    %tbody
+      - @unit_templates.each do |unit_template|
+        %tr
+          %td= unit_template.name
+          %td= unit_template.type
+          %td= unit_template.furnished
+          %td= unit_template.area
+          %td= unit_template.sqmprice
+          %td= unit_template.unitprice
+          %td= link_to 'Show', unit_template
+          %td= link_to 'Edit', edit_unit_template_path(unit_template)
+          %td= link_to 'Destroy', unit_template, :data => { confirm: 'Are you sure?' }, :method => :delete

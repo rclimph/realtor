@@ -1,0 +1,15 @@
+- if user_signed_in?
+  %li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+- else
+  %li= link_to 'Login', new_user_session_path
+- if user_signed_in?
+  %li= link_to 'Edit account', edit_user_registration_path
+- else
+  %li= link_to 'Sign up', new_user_registration_path
+- if user_signed_in?
+  %li= link_to 'Users', users_path
+%li
+  = link_to(raw('Tenants' + '<b class="caret"></b>'), corporate_tenants_path, :data => { :toggle => "dropdown" })
+  %ul.dropdown-menu
+    %li= link_to 'Show Tenants', corporate_tenants_path
+    %li= link_to 'New Corporate Tenant', new_corporate_tenant_path

@@ -11,7 +11,96 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328045119) do
+ActiveRecord::Schema.define(version: 20140609095000) do
+
+  create_table "addresses", force: true do |t|
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "region"
+    t.string   "zip"
+    t.string   "country"
+    t.integer  "addressable_id",   null: false
+    t.string   "addressable_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buildings", force: true do |t|
+    t.string   "name"
+    t.string   "building_type"
+    t.boolean  "address_same_as_development"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "country"
+    t.integer  "lowest_floor"
+    t.integer  "highest_floor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "development_area_id"
+  end
+
+  create_table "corporate_tenants", force: true do |t|
+    t.string   "company_name"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "province"
+    t.string   "company_country"
+    t.string   "zip"
+    t.string   "business_type"
+    t.string   "representative_position"
+    t.string   "representative_last_name"
+    t.string   "representative_middle_name"
+    t.string   "representative_first_name"
+    t.string   "representative_salutation"
+    t.string   "representative_country_citizenship"
+    t.string   "representative_address_1"
+    t.string   "representative_address_2"
+    t.string   "representative_city"
+    t.string   "representative_province"
+    t.string   "representative_country"
+    t.string   "representative_zip"
+    t.string   "id_type_1"
+    t.string   "id_number_1"
+    t.date     "id_issued_1"
+    t.date     "id_expiry_1"
+    t.string   "issue_place_1"
+    t.string   "id_type_2"
+    t.string   "id_number_2"
+    t.date     "id_issued_2"
+    t.date     "id_expiry_2"
+    t.string   "issue_place_2"
+    t.string   "id_type_3"
+    t.string   "id_number_3"
+    t.date     "id_issued_3"
+    t.date     "id_expiry_3"
+    t.string   "issue_place_3"
+    t.integer  "contract_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "development_areas", force: true do |t|
+    t.string   "name"
+    t.decimal  "area",              precision: 8, scale: 2
+    t.decimal  "valuation",         precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "property_owner_id"
+  end
+
+  create_table "property_owners", force: true do |t|
+    t.string   "company_name"
+    t.string   "email"
+    t.string   "contact_number"
+    t.string   "representative_name"
+    t.string   "representative_position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -23,6 +112,19 @@ ActiveRecord::Schema.define(version: 20140328045119) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "unit_templates", force: true do |t|
+    t.string   "name"
+    t.string   "unit_type"
+    t.boolean  "furnished"
+    t.decimal  "area"
+    t.decimal  "sqmprice"
+    t.decimal  "unitprice"
+    t.integer  "floor"
+    t.integer  "building_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

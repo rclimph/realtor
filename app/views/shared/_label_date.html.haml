@@ -1,0 +1,6 @@
+.row{ :class => "#{is_even ? 'even' : 'odd' }" }
+  .col-lg-3
+    = label_col
+  .col-lg-4
+    = val.nil? ? 'N/A' : val.to_formatted_s(:rfc822)  
+  

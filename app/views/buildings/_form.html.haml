@@ -1,0 +1,50 @@
+= simple_form_for [@development_area, @building] do |f|
+  .row
+    .col-lg-10
+      .panel
+        .panel-primary
+          .panel-heading
+            Building at
+            =@development_area.name
+        .panel-body
+          .row
+            .col-lg-12
+              = f.error_notification
+            .row
+              .col-lg-6
+                = normal_field(f, :name, 'Building Name')
+              .col-lg-3
+                = select_field(f, :building_type, Building::BUILDING_TYPES, Building::BUILDING_TYPES_LABEL)
+                
+            .row
+              .col-lg-6
+                %strong Same as Development?
+                = f.input_field :address_same_as_development
+                %strong Yes
+            .row
+              = f.simple_fields_for :address do |a|
+                .row            
+                  .col-lg-6
+                    = normal_field(a, :address_1, 'Address Line 1')
+                  .col-lg-6
+                    = normal_field(a, :address_2, 'Address Line 2')
+                .row
+                  .col-lg-3
+                    = normal_field(a, :city, 'City')
+                  .col-lg-3
+                    = normal_field(a, :zip, 'Zip')
+                  .col-lg-3
+                    = normal_field(a, :region, 'Province')
+                  .col-lg-3
+                    = country_select_field(a, :country, "Country")
+            .row
+              .col-lg-3
+                = normal_field(f, :lowest_floor, 'Lowest Floor')
+              .col-lg-3
+                = normal_field(f, :highest_floor, 'Highest Floor')
+            .row.submit-buttons
+              = f.submit :class => 'btn btn-info'
+              = link_to development_area_path(@development_area), :class => 'btn btn-default' do
+                %span.glyphicon.glyphicon-list-alt
+                Back
+    

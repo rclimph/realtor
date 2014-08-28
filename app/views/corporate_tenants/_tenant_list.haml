@@ -1,0 +1,8 @@
+- @corporate_tenants.each do |t|
+  %tr
+    %td= t.company_name
+    %td= t.business_type
+    %td= 'Building Unit Partial'
+    %td= t.representative_salutation + ' ' + t.representative_first_name + ' ' + t.representative_last_name + ' (' + t.representative_position + ')'
+    %td
+      = link_to('Edit', edit_corporate_tenant_path(t), :class => 'btn btn-default')

@@ -1,0 +1,40 @@
+.row
+  .col-lg-10
+    .panel
+      .panel-info
+        .panel-heading
+          Unit Templates
+      .panel-body.gray
+        - n = 0
+        - @building.unit_templates.each do |t|
+          - n += 1
+          .row.indented
+            .col-sm-1
+              %span.badge= n.to_s
+            .col-sm-8
+              %strong= t.name
+              %dl.dl-horizontal
+                %dt Unit Type:
+                %dd t.unit_type
+                %dt = (t.furnished ? "Furnished" : "Unfurnished")
+                %dd Area:
+                %dt = t.area
+                %dd Price Per SQM:
+                %dt = t.sqmprice
+                %dd Unit Price
+                %dt = t.unitprice
+          .row.indented
+            .col-sm-1
+            .col-sm-8
+              = link_to edit_building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
+                Edit
+              = link_to building_unit_path(@building, t), :class => 'btn btn-xs btn-default' do
+                Manage
+              = link_to 'Delete', building_unit_path(@building, t), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
+          .row.indented
+            .col-sm-10.bottombordered
+        .row
+          .col-sm-10
+            = link_to new_building_unit_template_path(@development_area.id), :class => 'btn btn-primary' do
+              %span.glyphicon.glyphicon-plus
+              Add New

@@ -1,0 +1,22 @@
+.row
+  .col-lg-10
+    .panel
+      .panel-primary
+        .panel-heading
+          Corporate Tenant Manifest
+      .panel-body
+        %table.table.table-bordered.table-striped
+          %tr
+            %th.col-sm-2 Company Name
+            %th.col-sm-1 Business Type
+            %th.col-sm-1 Leased Units
+            %th.col-sm-1 Representative
+            %th.col-sm-2 Actions
+          = render 'tenant_list', :collection => @corporate_tenants
+          
+          
+            
+            
+
+
+          

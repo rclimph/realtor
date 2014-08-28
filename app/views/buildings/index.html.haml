@@ -1,0 +1,36 @@
+.page-header
+  = link_to new_building_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Building
+  %h1 Listing buildings
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Type
+        %th Address same as development
+        %th Address 1
+        %th Address 2
+        %th City
+        %th Zip
+        %th Country
+        %th
+        %th
+        %th
+
+    %tbody
+      - @buildings.each do |building|
+        %tr
+          %td= building.name
+          %td= building.building_type
+          %td= building.address_same_as_development
+          %td= building.address.address_1
+          %td= building.address.address_2
+          %td= building.address.city
+          %td= building.address.zip
+          %td= building.address.country
+          %td= link_to 'Show', building
+          %td= link_to 'Edit', edit_building_path(building)
+          %td= link_to 'Destroy', building, :data => { confirm: 'Are you sure?' }, :method => :delete

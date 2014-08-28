@@ -1,0 +1,70 @@
+form .realtor_form {
+  padding: 5px; 
+}
+  
+form .row {
+  margin: 5px 0px;
+}
+
+.bootstrap-select.btn-group {
+  margin-bottom: 0px;
+}
+
+.btn-group button.btn span.caret {
+  margin-top: -2px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  vertical-align: middle;
+}
+
+/* Add margin to right of buttons to provide separation */
+form input.btn {
+  margin-right: 10px;
+}
+
+span.help-block {
+  color: #A94442;
+}
+
+.app_wrapper {
+  margin: 15px;
+}
+
+.row.even {
+  margin: 0;
+  padding: 0;
+  background-color: #e3e3e3;
+}
+
+.row.odd {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.row.indented {
+  margin-left: 15px;
+}
+
+.btn.btn-large.btn-primary a:visited {
+  color: #fff;
+}
+
+.btn-default:visited {
+  color: #333;
+};
+
+.row.submit-buttons {
+  margin-top: 20px;
+}
+
+.panel-body.gray {
+  background-color: #F8F8F8;
+}
+
+.bottombordered {
+  border-bottom: solid #c0c0c0 1px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
