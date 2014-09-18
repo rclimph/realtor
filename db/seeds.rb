@@ -156,3 +156,32 @@ owners.each do |pow|
     end
   end
 end
+
+puts "ADDING UNIT TEMPLATES FOR APARTMENT UNITS FOR ALL BUILDINGS"
+
+unit_list = [
+  [ "One Bedroom Premier",
+    "Residential - Serviced Apartment",
+    43,
+    true
+  ],
+  [ "Two Bedroom Deluxe",
+    "Residential - Serviced Apartment",
+    55,
+    true
+  ],
+  [ "One Bedroom Standard",
+    "Residential - Apartment",
+    42,
+    false
+  ]
+]
+
+buildings = Building.find(:all)
+
+buildings.each do |building|
+  unit_list.each do |a,b,c,d|
+    unit_template = building.unit_templates.new( name: a, unit_type: b, area: c, furnished: d )
+    unit_template.save!
+  end
+end

@@ -21,6 +21,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'jquery-turbolinks'
 gem 'puma'
 gem 'bootstrap-generators', '~> 3.1.1'
+gem 'nested_form'
 
 group :development do
   gem 'better_errors'

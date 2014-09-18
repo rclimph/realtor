@@ -15,7 +15,7 @@ class UnitTemplatesController < ApplicationController
   # GET /unit_templates/new
   def new
     @building = Building.find(params[:building_id])
-    @unit_template = UnitTemplate.new
+    @unit_template = @building.unit_templates.new
   end
 
   # GET /unit_templates/1/edit
@@ -25,11 +25,12 @@ class UnitTemplatesController < ApplicationController
   # POST /unit_templates
   # POST /unit_templates.json
   def create
-    @unit_template = UnitTemplate.new(unit_template_params)
+    @building = Building.find(params[:building_id])
+    @unit_template = @building.unit_templates.new(unit_template_params)
 
     respond_to do |format|
       if @unit_template.save
-        format.html { redirect_to @unit_template, notice: 'Unit template was successfully created.' }
+        format.html { redirect_to development_area_building_url(@building.development_area, @building), notice: 'Unit template was successfully created.' }
         format.json { render action: 'show', status: :created, location: @unit_template }
       else
         format.html { render action: 'new' }
@@ -57,7 +58,7 @@ class UnitTemplatesController < ApplicationController
   def destroy
     @unit_template.destroy
     respond_to do |format|
-      format.html { redirect_to unit_templates_url }
+      format.html { redirect_to development_area_building_url(@building.development_area, @building) }
       format.json { head :no_content }
     end
   end
@@ -71,6 +72,6 @@ class UnitTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_template_params
-      params.require(:unit_template).permit(:name, :unit_type, :furnished, :area, :sqmprice, :unitprice)
+      params.require(:unit_template).permit(:name, :unit_type, :furnished, :area, unit_template_pricings_attributes: [:id, :price_type, :pricepersqm, :priceperunit, :_destroy])
     end
 end

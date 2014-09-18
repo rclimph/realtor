@@ -1,13 +1,44 @@
-= simple_form_for(@unit_template) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :name
-    = f.input :unit_type
-    = f.input :furnished
-    = f.input :area
-    = f.input :sqmprice
-    = f.input :unitprice
+= simple_nested_form_for [@building, @unit_template] do |f|
+  -if @unit_template.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@unit_template.errors.count, "error")} prohibited this Unit Template from being saved:"
+      %ul
+        - @unit_template.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-lg-11
+      .panel
+        .panel-primary
+          .panel-heading
+            = "Unit Template For " + @building.name + " Building"
+        .panel-body
+          .row
+            .col-lg-12
+              = f.error_notification
+          .row
+            .col-lg-4
+              = normal_field(f, :name, "Unit Name")
+            .col-lg-3
+              = select_field(f, :unit_type, UnitTemplate::UNIT_TYPES, UnitTemplate::UNIT_TYPES_LABEL)
+            .col-lg-3
+              = normal_field(f, :area, "Area")
+            .col-lg-3
+              %strong Furnished?
+              = f.input_field :furnished
+              %strong Yes                       
+          = f.simple_fields_for :unit_template_pricings do |pricings|
+            .row
+              .col-lg-3              
+                = select_field(pricings, :price_type, UnitTemplatePricing::PRICING_TYPES, "Pricing Types")
+              .col-lg-3
+                = normal_field(pricings, :pricepersqm, "Price Per SQM")
+              .col-lg-3
+                = normal_field(pricings, :priceperunit, "Price Per Unit")
+              .col-lg-3
+                = pricings.link_to_remove "Remove Pricing", :class => 'btn btn-xs btn-default'
+          = f.link_to_add "Add Pricing", :unit_template_pricings, :class => 'btn btn-xs btn-default'
+          .row
 
   .form-actions
     = f.button :submit

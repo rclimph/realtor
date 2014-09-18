@@ -15,26 +15,30 @@
               %strong= t.name
               %dl.dl-horizontal
                 %dt Unit Type:
-                %dd t.unit_type
-                %dt = (t.furnished ? "Furnished" : "Unfurnished")
-                %dd Area:
-                %dt = t.area
-                %dd Price Per SQM:
-                %dt = t.sqmprice
-                %dd Unit Price
-                %dt = t.unitprice
+                %dd= t.unit_type
+                %dt Furnishings:
+                %dd= (t.furnished ? "Furnished" : "Unfurnished")
+                %dt Area:
+                %dd= t.area
+              - t.unit_template_pricings.each do |price|
+                %dt Price Type or Label
+                %dd= price.price_type
+                %dt Price Per SQM:
+                %dd= price.pricepersqm
+                %dt Unit Price
+                %dd= price.priceperunit
           .row.indented
             .col-sm-1
             .col-sm-8
               = link_to edit_building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
                 Edit
-              = link_to building_unit_path(@building, t), :class => 'btn btn-xs btn-default' do
+              = link_to building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
                 Manage
-              = link_to 'Delete', building_unit_path(@building, t), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
+              = link_to 'Delete', building_unit_template_path(@building, t), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
           .row.indented
             .col-sm-10.bottombordered
         .row
           .col-sm-10
-            = link_to new_building_unit_template_path(@development_area.id), :class => 'btn btn-primary' do
+            = link_to new_building_unit_template_path(@building.id), :class => 'btn btn-primary' do
               %span.glyphicon.glyphicon-plus
               Add New

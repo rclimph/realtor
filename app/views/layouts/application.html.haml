@@ -32,6 +32,17 @@
               %a{:href => "#about"} About
             %li
               %a{:href => "#contact"} Contact
+            %li
+              = caret_link('Owners', property_owners_path)
+              %ul.dropdown-menu
+                %li= link_to 'Show Owners', property_owners_path
+                %li= link_to 'New Property Owner', new_property_owner_path
+            %li
+              = caret_link('Buildings', buildings_path)
+              %ul.dropdown-menu
+                %li= link_to 'Show Buildings', buildings_path
+                
+              
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable" do

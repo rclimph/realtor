@@ -10,6 +10,8 @@
             %dl.dl-horizontal
               %dt Name:
               %dd= @building.name
+              %dt Development Area / Zone:
+              %dd= @development_area.name
               %dt Building Type:
               %dd= @building.building_type
               %dt Address same as development:
@@ -24,7 +26,7 @@
               %dd= @building.address.zip
               %dt Country:
               %dd= @building.address.country
-            = render 'unit_templates', :building => @building
+            = render 'unit_templates', :building => @building, :development_area => @development_area
             = link_to development_area_path(@development_area), :class => 'btn btn-default' do
               %span.glyphicon.glyphicon-list-alt
               Back

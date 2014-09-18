@@ -20,4 +20,5 @@
 //= require bootstrap-datepicker
 //= require shared
 //= require turbolinks
+//= require jquery_nested_form
 //= require_tree .

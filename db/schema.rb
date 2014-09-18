@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609095000) do
+ActiveRecord::Schema.define(version: 20140831040800) do
 
   create_table "addresses", force: true do |t|
     t.string   "address_1"
@@ -112,6 +112,15 @@ ActiveRecord::Schema.define(version: 20140609095000) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "unit_template_pricings", force: true do |t|
+    t.string   "price_type"
+    t.decimal  "pricepersqm"
+    t.decimal  "priceperunit"
+    t.integer  "unit_template_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "unit_templates", force: true do |t|
     t.string   "name"
