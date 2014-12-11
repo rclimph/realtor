@@ -1,0 +1,8 @@
+= simple_form_for(@master_contract) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :contract_label
+    = f.cktext_area :body, rows: 10, :class => 'ckeditor'
+  .form-actions
+    = f.button :submit

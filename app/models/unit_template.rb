@@ -5,7 +5,7 @@ class UnitTemplate < ActiveRecord::Base
   accepts_nested_attributes_for :unit_template_pricings, allow_destroy: true
   validates_numericality_of :sqmprice, allow_blank: true 
   validates_numericality_of :unitprice, allow_blank: true
-  validate :name_unique_for_building
+  validates_uniqueness_of :name, scope: :building_id
   validate :enforce_price_fields
   
   UNIT_TYPES = [ "Residential - Serviced Apartment", "Residential - Apartment", "Office Space", "Commercial", "Warehouse" ]

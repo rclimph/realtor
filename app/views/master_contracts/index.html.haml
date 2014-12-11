@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_master_contract_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Master contract
+  %h1 Listing master_contracts
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Contract label
+        %th Body
+        %th
+        %th
+        %th
+
+    %tbody
+      - @master_contracts.each do |master_contract|
+        %tr
+          %td= master_contract.contract_label
+          %td= master_contract.body
+          %td= link_to 'Show', master_contract
+          %td= link_to 'Edit', edit_master_contract_path(master_contract)
+          %td= link_to 'Destroy', master_contract, :data => { confirm: 'Are you sure?' }, :method => :delete

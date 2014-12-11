@@ -1,5 +1,7 @@
 Realtor::Application.routes.draw do
+  resources :master_contracts
 
+  mount Ckeditor::Engine => '/ckeditor'
   resources :unit_templates
 
   resources :buildings do

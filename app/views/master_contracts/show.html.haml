@@ -1,0 +1,14 @@
+.page-header
+  = link_to master_contracts_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_master_contract_path(@master_contract), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show master_contract
+
+%dl.dl-horizontal
+  %dt Contract label:
+  %dd= @master_contract.contract_label
+  %dt Body:
+  %dd= @master_contract.body

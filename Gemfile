@@ -22,6 +22,8 @@ gem 'jquery-turbolinks'
 gem 'puma'
 gem 'bootstrap-generators', '~> 3.1.1'
 gem 'nested_form'
+gem 'paperclip'
+gem 'ckeditor'
 
 group :development do
   gem 'better_errors'
