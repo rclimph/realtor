@@ -1,0 +1,11 @@
+= wicked_pdf_stylesheet_link_tag "application"
+= wicked_pdf_stylesheet_link_tag "document"
+.body
+  .contract_label 
+    = @master_contract.contract_label
+  %h3
+    Example heading
+    %span.label.label-default New
+  = @master_contract.body.html_safe
+  %p.text_center Centered Text
+  %em Rendered as italicized text

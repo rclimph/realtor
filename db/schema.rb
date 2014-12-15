@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20141211114535) do
   end
 
   create_table "master_contracts", force: true do |t|
+    t.string   "contract_name"
     t.string   "contract_label"
     t.text     "body"
     t.datetime "created_at"
@@ -152,7 +153,6 @@ ActiveRecord::Schema.define(version: 20141211114535) do
     t.decimal  "area"
     t.decimal  "sqmprice"
     t.decimal  "unitprice"
-    t.integer  "floor"
     t.integer  "building_id"
     t.datetime "created_at"
     t.datetime "updated_at"

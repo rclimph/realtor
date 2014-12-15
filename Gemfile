@@ -24,6 +24,8 @@ gem 'bootstrap-generators', '~> 3.1.1'
 gem 'nested_form'
 gem 'paperclip'
 gem 'ckeditor'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development do
   gem 'better_errors'

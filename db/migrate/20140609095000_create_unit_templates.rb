@@ -7,7 +7,7 @@ class CreateUnitTemplates < ActiveRecord::Migration
       t.decimal :area
       t.decimal :sqmprice
       t.decimal :unitprice
-      t.integer :floor
+      #t.integer :floor
       
       # FKs
       t.integer :building_id

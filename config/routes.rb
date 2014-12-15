@@ -1,5 +1,9 @@
 Realtor::Application.routes.draw do
-  resources :master_contracts
+  resources :master_contracts do
+    member do
+      get 'viewpdf'
+    end
+  end
 
   mount Ckeditor::Engine => '/ckeditor'
   resources :unit_templates

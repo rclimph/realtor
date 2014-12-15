@@ -26,6 +26,12 @@
               %dd= @building.address.zip
               %dt Country:
               %dd= @building.address.country
+              %dt Lowest Floor:
+              %dd= @building.lowest_floor_humanized
+              %dt Highest Floor:
+              %dd= @building.highest_floor_humanized
+              %dt Total Floors:
+              %dd= @building.total_floors
             = render 'unit_templates', :building => @building, :development_area => @development_area
             = link_to development_area_path(@development_area), :class => 'btn btn-default' do
               %span.glyphicon.glyphicon-list-alt

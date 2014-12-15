@@ -44,7 +44,7 @@ class UnitTemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @unit_template.update(unit_template_params)
-        format.html { redirect_to @unit_template, notice: 'Unit template was successfully updated.' }
+        format.html { redirect_to development_area_building_url(@building.development_area, @building), notice: 'Unit template was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -74,4 +74,6 @@ class UnitTemplatesController < ApplicationController
     def unit_template_params
       params.require(:unit_template).permit(:name, :unit_type, :furnished, :area, unit_template_pricings_attributes: [:id, :price_type, :pricepersqm, :priceperunit, :_destroy])
     end
+    
+
 end

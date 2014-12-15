@@ -45,4 +45,8 @@ class Building < ActiveRecord::Base
     return floor_humanized(self.lowest_floor)
   end
 
+  def total_floors
+    return self.highest_floor - self.lowest_floor
+  end
+  
 end

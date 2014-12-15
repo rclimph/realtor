@@ -1,6 +1,22 @@
 class MasterContractsController < ApplicationController
-  before_action :set_master_contract, only: [:show, :edit, :update, :destroy]
+  respond_to :pdf, :html
+  before_action :set_master_contract, only: [:show, :edit, :update, :destroy, :viewpdf]
 
+  def viewpdf # A custom member route for viewing PDF of the contract    
+    respond_with @master_contract do |format|
+      format.pdf do
+        @example_text = "Some Txt"
+        render :pdf => "contract.pdf",
+               :template => 'master_contracts/viewpdf.pdf.erb.haml',
+               :footer => {
+                 :center => "Contract of Lease",
+                 :left => "Left",
+                 :right => "Right"
+                }
+      end
+    end
+  end
+  
   # GET /master_contracts
   # GET /master_contracts.json
   def index
@@ -69,6 +85,6 @@ class MasterContractsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def master_contract_params
-      params.require(:master_contract).permit(:contract_label, :body)
+      params.require(:master_contract).permit(:contract_name, :contract_label, :body)
     end
 end
