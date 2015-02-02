@@ -64,7 +64,7 @@ development_area_list = [
     "6014",
     "Philippines",
     "2400",
-    "8000000"],
+    8000000],
   [ "Astana Square",
     "M.J. Cuenco Avenue",
     "",
@@ -73,7 +73,7 @@ development_area_list = [
     "6000",
     "Philippines",
     "10000",
-    "12000000"    
+    12000000    
   ]
 ]
 

@@ -2,6 +2,8 @@ class UnitTemplate < ActiveRecord::Base
   includes SharedHelper
   belongs_to :building
   has_many :unit_template_pricings
+  has_many :children, class_name: "UnitTemplate", foreign_key: "parent_id"
+  belongs_to :parent, class_name: "UnitTemplate"
   accepts_nested_attributes_for :unit_template_pricings, allow_destroy: true
   validates_numericality_of :sqmprice, allow_blank: true 
   validates_numericality_of :unitprice, allow_blank: true
