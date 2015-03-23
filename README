@@ -58,3 +58,10 @@ Preferences:
 ________________________
 
 License
+
+To Do List:
+
+Next Version
+---
+1.  Create a new controller called unit_template_mergings controller - this controller handles relationship between a parent unit and mergable subunits that belong to it.  Creation of mergable units, destruction of mergable units, assigning unit_template_pricings to the unit ETC
+2.  Clean up the unit_template controller and remove all reference to mergable_units such as new_mergable_unit

@@ -4,12 +4,18 @@ class Building < ActiveRecord::Base
   has_one :address, :as => :addressable, dependent: :destroy
   has_many :unit_templates, dependent: :destroy
   accepts_nested_attributes_for :address
-  
+
   BUILDING_TYPES = [ 'PEZA Certified Office Building', 'Office', 'Office and Commercial', 'Commercial',
                      'Mixed-Use Apartment and Commercial', 'Apartment', 'Serviced Apartment', 'Residential Condominium', 'Hotel', 'Warehouse',
                      'PEZA Certified Warehouse', 'Subdivision House', 'Standalone House', 'Raw Land' ]
   BUILDING_TYPES_LABEL = [ 'Select Building Type']
   
+  def unit_templates_without_merged_units
+    # This returns all unit templates that have no merged units under them (e.g. the top level, childless unit templates)
+    # Unit templates with children are presumed to be merged units
+    return self.unit_templates(:conditions => { :has_merged => false })
+  end
+
   def copy_address_if_same(development_area)
     if self[:address_same_as_development]
       self.address = development_area.address
@@ -48,5 +54,5 @@ class Building < ActiveRecord::Base
   def total_floors
     return self.highest_floor - self.lowest_floor
   end
-  
+
 end

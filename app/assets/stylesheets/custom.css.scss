@@ -44,6 +44,7 @@ span.help-block {
 }
 
 .row.indented {
+  margin-top: 5px;
   margin-left: 15px;
 }
 
@@ -69,3 +70,10 @@ span.help-block {
   margin-bottom: 10px;
 }
 
+.btn.nested-delete {
+  margin-top: 32px;
+}
+
+.btn.nested-new {
+  margin-left: 15px;
+}

@@ -6,7 +6,11 @@ Realtor::Application.routes.draw do
   end
 
   mount Ckeditor::Engine => '/ckeditor'
-  resources :unit_templates
+  resources :unit_templates do
+    member do
+      get 'new_mergable_unit'
+    end
+  end
 
   resources :buildings do
     resources :unit_templates

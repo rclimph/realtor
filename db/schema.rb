@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20150202102636) do
     t.decimal  "area",        precision: 10, scale: 0
     t.decimal  "sqmprice",    precision: 10, scale: 0
     t.decimal  "unitprice",   precision: 10, scale: 0
+    t.boolean  "has_merged",                           default: false
     t.integer  "building_id"
     t.datetime "created_at"
     t.datetime "updated_at"

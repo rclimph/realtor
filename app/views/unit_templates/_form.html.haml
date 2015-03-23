@@ -12,10 +12,12 @@
         .panel-primary
           .panel-heading
             = "Unit Template For " + @building.name + " Building"
+            = "Parent Unit " + @unit_template.parent.name if @unit_template.parent
         .panel-body
           .row
             .col-lg-12
               = f.error_notification
+              = hidden_field_tag(:parent_id, @unit_template.parent.id) if @unit_template.parent
           .row
             .col-lg-4
               = normal_field(f, :name, "Unit Name")
@@ -36,9 +38,21 @@
               .col-lg-3
                 = normal_field(pricings, :priceperunit, "Price Per Unit")
               .col-lg-3
-                = pricings.link_to_remove "Remove Pricing", :class => 'btn btn-xs btn-default'
-          = f.link_to_add "Add Pricing", :unit_template_pricings, :class => 'btn btn-xs btn-default'
+                = pricings.link_to_remove "Remove Pricing", :class => 'btn nested-delete btn-xs btn-danger'
+          = f.link_to_add "Add Pricing", :unit_template_pricings, :class => 'btn nested-new btn-xs btn-success'
           .row
+      - if @unit_template.has_merged
+        .panel
+          .panel-primary
+            .panel-heading
+              Mergable Units
+          .panel-body
+            .h5 This unit can be split into two or more mergable units that can be rented or leased separately:
+            - mergables = @unit_template.children
+            - if mergables.count < 1
+              %strong No mergable units exist for this type of unit.
+            - else
+              "Mergable Units:"
 
   .form-actions
     = f.button :submit

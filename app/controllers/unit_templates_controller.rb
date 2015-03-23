@@ -1,5 +1,5 @@
 class UnitTemplatesController < ApplicationController
-  before_action :set_unit_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_unit_template, only: [:show, :edit, :update, :destroy, :new_mergable_unit]
 
   # GET /unit_templates
   # GET /unit_templates.json
@@ -18,6 +18,11 @@ class UnitTemplatesController < ApplicationController
     @unit_template = @building.unit_templates.new
   end
 
+  # GET /unit_templates/new_mergable_unit << adds a new mergable unit to an existing unit
+  def new_mergable_unit
+    @unit_template = @unit_template.children.new
+  end
+
   # GET /unit_templates/1/edit
   def edit
   end
@@ -26,7 +31,13 @@ class UnitTemplatesController < ApplicationController
   # POST /unit_templates.json
   def create
     @building = Building.find(params[:building_id])
-    @unit_template = @building.unit_templates.new(unit_template_params)
+    if params[:parent_id]
+      @unit_template_parent = @building.unit_templates.find params[:parent_id]
+      @unit_template = @unit_template_parent.children.new(unit_template_params)
+      @unit_template.building = @building
+    else
+      @unit_template = @building.unit_templates.new(unit_template_params)
+    end
 
     respond_to do |format|
       if @unit_template.save
@@ -72,7 +83,7 @@ class UnitTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_template_params
-      params.require(:unit_template).permit(:name, :unit_type, :furnished, :area, unit_template_pricings_attributes: [:id, :price_type, :pricepersqm, :priceperunit, :_destroy])
+      params.require(:unit_template).permit(:name, :unit_type, :furnished, :area, :parent_id, unit_template_pricings_attributes: [:id, :price_type, :pricepersqm, :priceperunit, :_destroy])
     end
     
 

@@ -1,1 +1,15 @@
-Deprecated
+%div.app_wrapper
+  %div.tenant_show
+    .row
+      .col-lg-10         
+        .panel.panel-info
+          .panel-heading
+            .panel-title
+              Manage Merged Units
+          .panel-body
+            = render :partial => 'unit_templates/unit_template', :locals => {:t => @unit_template}
+    .row
+      .col-sm-10
+        = link_to new_mergable_unit_unit_template_path(@unit_template), :class => 'btn btn-primary' do
+          %span.glyphicon.glyphicon-plus
+          New Merged Unit

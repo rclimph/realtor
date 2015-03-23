@@ -12,7 +12,7 @@ class UnitTemplate < ActiveRecord::Base
   
   UNIT_TYPES = [ "Residential - Serviced Apartment", "Residential - Apartment", "Office Space", "Commercial", "Warehouse" ]
   UNIT_TYPES_LABEL = "Select Unit Type"
-  
+
   private
   
   def enforce_price_fields

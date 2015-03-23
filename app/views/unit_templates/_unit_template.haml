@@ -1,0 +1,35 @@
+.row.indented
+  .col-sm-1
+    - if (defined?(n))
+      %span.badge= n.to_s
+  .col-sm-8
+    %strong= t.name
+    %dl.dl-horizontal
+      %dt Unit Type:
+      %dd= t.unit_type
+      %dt Furnishings:
+      %dd= (t.furnished ? "Furnished" : "Unfurnished")
+      %dt Area:
+      %dd= t.area
+    %table.table.table-striped.table-hover.table-bordered
+      %thead
+        %tr
+          %th Pricing Type
+          %th SQM Price
+          %th Unit Price
+        %tbody
+          - t.unit_template_pricings.each do |price|
+            %tr
+              %td= price.price_type
+              %td= price.pricepersqm
+              %td= price.priceperunit
+.row.indented
+  .col-sm-1
+  .col-sm-10
+    .panel
+      .panel-info
+        .panel-heading
+          Mergable Units Under This Unit
+      .panel-body
+        - if t.has_merged == false
+          %strong No merged units.
