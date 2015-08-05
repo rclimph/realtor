@@ -27,6 +27,8 @@ gem 'ckeditor'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'pg'
+gem 'rails_12factor'
+
 
 group :development do
   gem 'better_errors'
@@ -42,7 +44,6 @@ group :development, :test do
 end
 group :production, :staging do
   gem 'thin'
-  gem 'rails_12factor'
 end
 group :test do
   gem 'capybara'
