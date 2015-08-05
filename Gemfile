@@ -26,6 +26,7 @@ gem 'paperclip'
 gem 'ckeditor'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'pg'
 
 group :development do
   gem 'better_errors'
