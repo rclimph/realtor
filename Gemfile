@@ -40,8 +40,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
 end
-group :production do
+group :production, :staging do
   gem 'thin'
+  gem 'rails_12factor'
 end
 group :test do
   gem 'capybara'
