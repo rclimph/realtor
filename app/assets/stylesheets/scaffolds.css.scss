@@ -19,13 +19,18 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #A39278;
   &:visited {
-    color: #fff;
+    color: #A39278;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #0C537B;
+  }
+}
+
+.navbar-nav > .open > a {
+  &:focus {
+    background-color: #A39278;  	  	
   }
 }
 

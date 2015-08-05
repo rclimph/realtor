@@ -85,3 +85,13 @@ section {
     width: 220px;
     margin-right: 10px;
 }
+
+.navbar-inverse {
+  background-color: #0C537B;
+  border-color: #A39278;
+}
+
+.navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #FFF;
+    background-color: #A39278;
+}

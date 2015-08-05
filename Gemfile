@@ -11,8 +11,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass'
 gem 'cancan'
 gem 'devise'
-gem 'figaro'
-gem 'haml-rails'
+gem 'figaro' # For configuring rails apps and keeping private stuff, private
+gem 'haml-rails' # For easier to read views than HTML
 gem 'rolify'
 gem 'simple_form', '>= 3.1.0.rc1'
 gem 'country_select'
