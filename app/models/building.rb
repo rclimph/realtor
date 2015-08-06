@@ -10,10 +10,16 @@ class Building < ActiveRecord::Base
                      'PEZA Certified Warehouse', 'Subdivision House', 'Standalone House', 'Raw Land' ]
   BUILDING_TYPES_LABEL = [ 'Select Building Type']
   
-  def unit_templates_without_merged_units
-    # This returns all unit templates that have no merged units under them (e.g. the top level, childless unit templates)
-    # Unit templates with children are presumed to be merged units
-    return self.unit_templates(:conditions => { :has_merged => false })
+  def unit_templates_regular
+    # This returns all unit templates that are not merged units (e.g. units that do not have a parent unit)
+    # regular unit templates are simply unit templates that have no parents (e.g. they are not merged units)
+    regular_units = []
+    self.unit_templates.each do |t|
+      unless t.is_a_merged_unit?
+        regular_units << t
+      end
+    end
+    return regular_units
   end
 
   def copy_address_if_same(development_area)

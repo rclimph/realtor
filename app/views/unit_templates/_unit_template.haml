@@ -23,13 +23,23 @@
               %td= price.price_type
               %td= price.pricepersqm
               %td= price.priceperunit
-.row.indented
-  .col-sm-1
-  .col-sm-10
-    .panel
-      .panel-info
-        .panel-heading
-          Mergable Units Under This Unit
-      .panel-body
-        - if t.has_merged == false
-          %strong No merged units.
+- unless t.is_a_merged_unit?
+  .row.indented
+    .col-sm-1
+    .col-sm-10
+      .panel
+        .panel-info
+          .panel-heading
+            Mergable Units Under This Unit
+        .panel-body
+          - if t.has_merged_units?
+            - n = 0
+            - t.children.each do |tchild|
+              - n += 1
+              = render :partial => 'unit_templates/unit_template', :locals => {:t => tchild, :n => n}
+              .row.indented
+                = link_to edit_building_unit_template_path(@building, tchild), :class => 'btn btn-xs btn-default' do
+                  Edit
+                = link_to 'Delete', building_unit_template_path(@building, tchild), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
+          - else
+            %strong No merged units.

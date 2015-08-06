@@ -41,18 +41,23 @@
                 = pricings.link_to_remove "Remove Pricing", :class => 'btn nested-delete btn-xs btn-danger'
           = f.link_to_add "Add Pricing", :unit_template_pricings, :class => 'btn nested-new btn-xs btn-success'
           .row
-      - if @unit_template.has_merged
+      - if @unit_template.has_merged_units? && (!@unit_template.is_a_merged_unit?)
         .panel
           .panel-primary
             .panel-heading
               Mergable Units
           .panel-body
-            .h5 This unit can be split into two or more mergable units that can be rented or leased separately:
-            - mergables = @unit_template.children
-            - if mergables.count < 1
-              %strong No mergable units exist for this type of unit.
+            .h5 This unit can be split into two or more mergable units that can be rented or leased separately.
+            - t = @unit_template
+            - if t.has_merged_units?
+              - n = 0
+              - t.children.each do |tchild|
+                - n += 1
+                = render :partial => 'unit_templates/unit_template', :locals => {:t => tchild, :n => n}
             - else
-              "Mergable Units:"
+              %strong No merged units.
+
+
 
   .form-actions
     = f.button :submit

@@ -1,24 +1,25 @@
+
 .row
   .col-lg-10
-    .panel
-      .panel-info
-        .panel-heading
-          Unit Templates
-      .panel-body
-        - n = 0
-        - @building.unit_templates_without_merged_units.each do |t|
-          - n += 1
-          = render :partial => 'unit_templates/unit_template', :locals => {:t => t, :n => n}
-          .row.indented
-            = link_to edit_building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
-              Edit
-            = link_to building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
-              Mergable Units
-            = link_to 'Delete', building_unit_template_path(@building, t), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
-          .row.indented
-            .col-sm-10.bottombordered
-        .row
-          .col-sm-10
-            = link_to new_building_unit_template_path(@building.id), :class => 'btn btn-primary' do
-              %span.glyphicon.glyphicon-plus
-              Add New
+    %ul.nav.nav-tabs
+      %li.active
+        %a{:href => "#"} Unit Templates
+      %li
+        %a{:href => "#"} Actual Units
+    - n = 0
+    - @building.unit_templates_regular.each do |t|
+      - n += 1
+      = render :partial => 'unit_templates/unit_template', :locals => {:t => t, :n => n}
+      .row.indented
+        = link_to edit_building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
+          Edit
+        = link_to building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
+          Mergable Units
+        = link_to 'Delete', building_unit_template_path(@building, t), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
+      .row.indented
+        .col-sm-10.bottombordered
+    .row.indented
+      .col-sm-10.bottombordered
+        = link_to new_building_unit_template_path(@building.id), :class => 'btn btn-primary' do
+          %span.glyphicon.glyphicon-plus
+          Add New Template

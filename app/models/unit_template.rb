@@ -13,6 +13,16 @@ class UnitTemplate < ActiveRecord::Base
   UNIT_TYPES = [ "Residential - Serviced Apartment", "Residential - Apartment", "Office Space", "Commercial", "Warehouse" ]
   UNIT_TYPES_LABEL = "Select Unit Type"
 
+  def has_merged_units?
+    # if this unit has merged units that form it, then it should have children.  if not then it is either a regular unit or a merged unit (a unit that has a parent but itself does not have merged units under it)
+    return self.children.any?  
+  end
+  
+  def is_a_merged_unit?
+    # if this is a merged unit, then it should have a parent.  This method is used to determine if a unit_template is a merged unit that belongs to another unit (parent)
+    return self.parent.nil? ? false : true
+  end
+  
   private
   
   def enforce_price_fields

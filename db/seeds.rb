@@ -8,7 +8,9 @@
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
 
-YAML.load(ENV["ROLES"]).each do |role|
+roles_list = ["admin", "user", "propertymanager", "hotelmanager", "housekeepingsuper", "housekeeper", "frontdesk"]
+
+roles_list.each do |role|
   Role.find_or_create_by_name(role)
   puts 'role: ' << role
 end
