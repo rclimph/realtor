@@ -45,6 +45,7 @@ end
 group :production, :staging do
   gem 'thin'
   gem 'wkhtmltopdf-heroku'
+  gem 'wkhtmltopdf-binary'
 end
 group :test do
   gem 'capybara'
