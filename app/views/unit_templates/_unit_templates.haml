@@ -5,7 +5,7 @@
       %li.active
         %a{:href => "#"} Unit Templates
       %li
-        %a{:href => "#"} Actual Units
+        = link_to 'Actual Units', building_actual_units_path(@building)
     - n = 0
     - @building.unit_templates_regular.each do |t|
       - n += 1

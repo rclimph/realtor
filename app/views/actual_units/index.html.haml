@@ -1,0 +1,47 @@
+%div.app_wrapper
+  %div.tenant_show
+    .row
+      .col-lg-10         
+        .panel.panel-info
+          .panel-heading
+            .panel-title
+              Building Management
+          .panel-body
+            %dl.dl-horizontal
+              %dt Name:
+              %dd= @building.name
+              %dt Development Area / Zone:
+              %dd= @development_area.name
+              %dt Building Type:
+              %dd= @building.building_type
+              %dt Address same as development:
+              %dd= @building.address_same_as_development
+              %dt Address 1:
+              %dd= @building.address.address_1
+              %dt Address 2:
+              %dd= @building.address.address_2
+              %dt City:
+              %dd= @building.address.city
+              %dt Zip:
+              %dd= @building.address.zip
+              %dt Country:
+              %dd= @building.address.country
+              %dt Lowest Floor:
+              %dd= @building.lowest_floor_humanized
+              %dt Highest Floor:
+              %dd= @building.highest_floor_humanized
+              %dt Total Floors:
+              %dd= @building.total_floors
+              .row
+                .col-lg-10
+                  %ul.nav.nav-tabs
+                    %li
+                      = link_to 'Unit Templates', building_path(@building)
+                    %li.active
+                      = link_to 'Actual Units', building_actual_units_path(@building)
+                  - floors = @building.floors_humanized
+                  - floors.each do |floor|
+                    .row
+                    .row.indented
+                      .col-lg-10.bottombordered
+                        %span.badge= floor

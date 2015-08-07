@@ -3,6 +3,7 @@ class Building < ActiveRecord::Base
   belongs_to :development_area
   has_one :address, :as => :addressable, dependent: :destroy
   has_many :unit_templates, dependent: :destroy
+  has_many :actual_units, dependent: :destroy
   accepts_nested_attributes_for :address
 
   BUILDING_TYPES = [ 'PEZA Certified Office Building', 'Office', 'Office and Commercial', 'Commercial',
@@ -59,6 +60,14 @@ class Building < ActiveRecord::Base
 
   def total_floors
     return self.highest_floor - self.lowest_floor
+  end
+  
+  def floors_humanized
+    floors_array = []
+    for f in self.lowest_floor..self.highest_floor
+      floors_array << floor_humanized(f) unless f == 0 # the 0th floor doesn't count (its not a floor)
+    end
+    return floors_array
   end
 
 end

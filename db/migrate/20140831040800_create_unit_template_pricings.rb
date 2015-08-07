@@ -4,7 +4,7 @@ class CreateUnitTemplatePricings < ActiveRecord::Migration
       t.string :price_type
       t.decimal :pricepersqm
       t.decimal :priceperunit
-      t.integer :unit_template_id
+      t.integer :unit_template_id #FK
 
       t.timestamps
     end

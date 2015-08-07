@@ -1,5 +1,6 @@
 class UnitTemplate < ActiveRecord::Base
   includes SharedHelper
+  has_many :actual_units, dependent: :destroy
   belongs_to :building
   has_many :unit_template_pricings
   has_many :children, class_name: "UnitTemplate", foreign_key: "parent_id"
@@ -10,7 +11,7 @@ class UnitTemplate < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :building_id
   validate :enforce_price_fields
   
-  UNIT_TYPES = [ "Residential - Serviced Apartment", "Residential - Apartment", "Office Space", "Commercial", "Warehouse" ]
+  UNIT_TYPES = [ "Apartelle", "Apartment", "Office", "Commercial", "Warehouse" ]
   UNIT_TYPES_LABEL = "Select Unit Type"
 
   def has_merged_units?

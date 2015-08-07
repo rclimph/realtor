@@ -28,6 +28,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'pg'
 gem 'rails_12factor'
+gem 'wicked'
 
 
 group :development do
@@ -44,6 +45,7 @@ group :development, :test do
 end
 group :production, :staging do
   gem 'thin'
+  gem 'wkhtmltopdf-heroku'
 end
 group :test do
   gem 'capybara'

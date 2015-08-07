@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202102636) do
+ActiveRecord::Schema.define(version: 20150806021154) do
+
+  create_table "actual_units", force: true do |t|
+    t.string   "name"
+    t.decimal  "area_override",    precision: 10, scale: 0
+    t.integer  "building_id"
+    t.integer  "unit_template_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "addresses", force: true do |t|
     t.string   "address_1"
