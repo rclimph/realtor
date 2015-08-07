@@ -25,11 +25,9 @@ gem 'nested_form'
 gem 'paperclip'
 gem 'ckeditor'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 gem 'pg'
 gem 'rails_12factor'
 gem 'wicked'
-
 
 group :development do
   gem 'better_errors'
@@ -38,6 +36,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
+  gem 'wkhtmltopdf-binary'
 end
 group :development, :test do
   gem 'factory_girl_rails'
