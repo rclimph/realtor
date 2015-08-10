@@ -1,0 +1,22 @@
+= simple_form_for [@building, @actual_unit] do |f|
+  .row
+    .col-lg-10
+      .panel
+        .panel-primary
+          .text-muted
+            Note:  You are now adding a new unit at  
+            =@building.name
+          .panel-body
+            .row
+              .col-lg-12
+                = f.error_notification
+              .row
+                .col-lg-9
+                  = select_field(f, :unit_template_id, @building.unit_templates, "Template")
+              .row
+                .col-lg-6
+                  = normal_field(f, :name, 'Unit Name')
+                .col-lg-3
+                  = select_field(f, :floor_humanized, @building.floors_humanized, "Floor")
+              .row.submit-buttons
+                = f.submit "Next Step", :class => 'btn btn-info'

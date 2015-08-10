@@ -11,16 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806021154) do
+ActiveRecord::Schema.define(version: 20150807120809) do
 
   create_table "actual_units", force: true do |t|
     t.string   "name"
+    t.string   "floor_humanized"
     t.decimal  "area_override",    precision: 10, scale: 0
     t.integer  "building_id"
     t.integer  "unit_template_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
   end
+
+  add_index "actual_units", ["parent_id"], name: "index_actual_units_on_parent_id", using: :btree
 
   create_table "addresses", force: true do |t|
     t.string   "address_1"

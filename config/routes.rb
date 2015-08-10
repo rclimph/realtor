@@ -1,6 +1,8 @@
 Realtor::Application.routes.draw do
-  resources :actual_units
 
+  resources :actual_units
+  resources :actual_unit_wizard
+    
   resources :master_contracts do
     member do
       get 'viewpdf'

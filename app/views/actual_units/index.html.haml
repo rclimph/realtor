@@ -5,7 +5,7 @@
         .panel.panel-info
           .panel-heading
             .panel-title
-              Building Management
+              = "Building Management: " + @building.name
           .panel-body
             %dl.dl-horizontal
               %dt Name:
@@ -45,3 +45,8 @@
                     .row.indented
                       .col-lg-10.bottombordered
                         %span.badge= floor
+          .row.indented
+            .col-sm-10
+              = link_to new_building_actual_unit_path(@building.id), :class => 'btn btn-primary' do
+                %span.glyphicon.glyphicon-plus
+                Add A Unit

@@ -1,0 +1,16 @@
+%div.app_wrapper
+  %div.tenant_show
+    .row
+      .col-lg-10         
+        .panel.panel-info
+          .panel-heading
+            .panel-title
+              Add Actual Unit - Step 2: Add Subunits (Mergable Units)
+          .panel-body
+            .text-muted
+              %strong
+                Step 2: Override Defaults
+            .progress
+              .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "66", :role => "progressbar", :style => "width:66%"}
+                Step 2 / 3
+            = render partial: "add_subunits_form"

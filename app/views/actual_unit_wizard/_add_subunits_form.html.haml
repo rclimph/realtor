@@ -1,0 +1,26 @@
+= simple_form_for [@building, @actual_unit], url: wizard_path, method: :put do |f|
+  .row
+    .col-lg-10
+      .panel
+        .panel-primary
+          .text-muted
+            Adding Unit 
+            =@actual_unit.name 
+            on 
+            =@actual_unit.floor_humanized 
+            of 
+            =@building.name
+          .text-muted
+            This unit is based on 
+            =@actual_unit.unit_template.name
+          .panel-body
+            .row
+              .col-lg-12
+                = f.error_notification
+            .row
+              .col-lg-6
+                = normal_field(f, :area_override, 'Area Sqm')
+              .col-lg-3
+                = select_field(f, :floor_humanized, @building.floors_humanized, "Floor")
+            .row.submit-buttons
+              = f.submit "Next Step", :class => 'btn btn-info'
