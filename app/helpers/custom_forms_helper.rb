@@ -3,6 +3,10 @@ module CustomFormsHelper
     return (f.input obj, :placeholder => label, :label => label, class: "form-control")
   end
   
+  def normal_field_disabled(f, obj, label)
+    return (f.input obj, :placeholder => label, :label => label, :disabled => true, class: "form-control")
+  end
+  
   def checkbox_normal_field(f, checkbox_obj, field_obj, label_obj)
     render :partial => 'shared/checkbox_field', :locals => { :f => f, :checkbox_obj => checkbox_obj, :field_obj => field_obj, :label_obj => label_obj } 
   end

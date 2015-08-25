@@ -69,5 +69,9 @@ class Building < ActiveRecord::Base
     end
     return floors_array
   end
+  
+  def units_on_floor(floor)
+    self.actual_units.where(floor_humanized: floor)
+  end
 
 end

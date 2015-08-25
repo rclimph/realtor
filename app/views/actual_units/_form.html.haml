@@ -12,7 +12,7 @@
                 = f.error_notification
               .row
                 .col-lg-9
-                  = select_field(f, :unit_template_id, @building.unit_templates, "Template")
+                  = select_field(f, :unit_template_id, @building.unit_templates_regular, "Template")
               .row
                 .col-lg-6
                   = normal_field(f, :name, 'Unit Name')

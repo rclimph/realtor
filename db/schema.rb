@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807120809) do
+ActiveRecord::Schema.define(version: 20150812015530) do
+
+  create_table "actual_unit_pricings", force: true do |t|
+    t.string   "price_type"
+    t.decimal  "pricepersqm",    precision: 10, scale: 0
+    t.decimal  "priceperunit",   precision: 10, scale: 0
+    t.integer  "actual_unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "actual_units", force: true do |t|
     t.string   "name"
     t.string   "floor_humanized"
-    t.decimal  "area_override",    precision: 10, scale: 0
+    t.decimal  "area_override",      precision: 10, scale: 0
+    t.boolean  "furnished_override"
     t.integer  "building_id"
     t.integer  "unit_template_id"
     t.datetime "created_at"

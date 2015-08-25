@@ -21,16 +21,16 @@ user.add_role :admin
 
 puts 'DUMMY PROPERTY OWNERS'
 owner_list = [
-  [ "Sharie Realty Corporation",
-    "Mactan Road",
-    "Kasambagan",
-    "Cebu City",
-    "6000",
+  [ "Cebu R3LP Realty, Incorporated",
+    "A.S. Fortuna Corner Hernan Cortes Streets",
+    "Banilad",
+    "Mandaue City",
+    "6014",
     "Philippines",
-    "sharie_ruiz@icloud.com",
+    "rclim_ph@icloud.com",
     "+63.917.6240800",
-    "Sharmine Ruiz",
-    "President"],
+    "Raymond Lim",
+    "Managing Director"],
   [ "Cebu R3LP Corporation",
     "Chatswood Avenue",
     "A.S. Fortuna Road",
@@ -103,8 +103,8 @@ end
 puts "ADDING DUMMY BUILDINGS TO DEVELOPMENT AREAS"
 
 building_list = [
-  [ "Chatswood Residences",
-    "Serviced Apartment",
+  [ "Chatswood Building 3",
+    "Office and Commercial",
     true,
     "",
     "",
@@ -112,19 +112,30 @@ building_list = [
     "",
     "",
     "",
-    -2,
-    5],
-  [ "Building B",
-    "Offices",
-    false,
-    "Germania Street",
+    1,
+    2],
+  [ "Chatswood Building 1",
+    "Office and Commercial",
+    true,
     "",
-    "Lapu-Lapu City",
-    "CEBU",
-    "6000",
-    "Philippines",
-    -4,
-    1]
+    "",
+    "",
+    "",
+    "",
+    "",
+    1,
+    3],
+  [ "Chatswood Building 2",
+    "Commercial",
+    true,
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    1,
+    2]
 ]
 
 owners = PropertyOwner.find(:all)
@@ -162,19 +173,19 @@ end
 puts "ADDING UNIT TEMPLATES FOR APARTMENT UNITS FOR ALL BUILDINGS"
 
 unit_list = [
-  [ "One Bedroom Premier",
-    "Residential - Serviced Apartment",
-    43,
-    true
+  [ "Building 2 Standard Commercial Ground",
+    "Commercial",
+    67,
+    false
   ],
-  [ "Two Bedroom Deluxe",
-    "Residential - Serviced Apartment",
-    55,
-    true
+  [ "Building 2 Standard Commercial Second Floor",
+    "Commercial",
+    67,
+    false
   ],
-  [ "One Bedroom Standard",
-    "Residential - Apartment",
-    42,
+  [ "Building 1 Standard Offices",
+    "Office",
+    25,
     false
   ]
 ]

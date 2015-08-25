@@ -1,0 +1,23 @@
+= simple_form_for @actual_unit, url: wizard_path, method: :put do |f|
+  .row
+    = render partial: "info_one", :locals => { :actual_unit => @actual_unit }
+    - number = 0
+    = f.simple_fields_for :children do |sub|
+      - number += 1
+      .nested-fields
+        %strong Subunit #
+        %strong= number
+        .row
+          .col-lg-3 
+            = normal_field_disabled(sub, :name, "Name")
+          .col-lg-2
+            = normal_field(sub, :area_override, 'Area Sqm')
+          .col-lg-3
+            %strong Furnished?
+          = sub.input_field :furnished_override
+        = sub.hidden_field :floor_humanized   # pass along attributes from parent
+        = sub.hidden_field :building_id       # pass along attributes from parent
+        = sub.hidden_field :unit_template_id  # pass along attributes from parent
+        = sub.hidden_field :name
+  .row.submit-buttons
+    = f.submit "Next Step", :class => 'btn btn-info'

@@ -18,11 +18,30 @@ class ActualUnitsController < ApplicationController
       if @actual_unit.save
         session[:actual_unit_id] = @actual_unit.id # send the newly created unit to next step
         session[:unit_template_id] = params[:unit_template_id] # send the unit_template to use to pre-generate data fields
-        format.html { redirect_to actual_unit_wizard_path(:add_subunits), notice: "Step one complete."}
+        format.html { redirect_to actual_unit_wizard_path(:override)}
       else
         format.html { render :new }
       end
     end
+  end
+  
+  def edit
+    @actual_unit = ActualUnit.find(params[:id])
+  end
+  
+  def update
+    @building = Building.find(params[:building_id])
+    @actual_unit = ActualUnit.find(params[:id])
+    
+    respond_to do |format|
+      if @actual_unit.update(actual_unit_params)
+        session[:actual_unit_id] = @actual_unit.id
+        session[:building_id] = @building.id
+        format.html { redirect_to actual_unit_wizard_path(:override)}
+      else
+        format.html { render action: 'edit' }
+      end
+    end  
   end
   
   private
@@ -33,6 +52,6 @@ class ActualUnitsController < ApplicationController
   end
   
   def actual_unit_params
-    params.require(:actual_unit).permit(:name, :floor_humanized,  :unit_template_id)
+    params.require(:actual_unit).permit(:name, :floor_humanized,  :unit_template_id, :furnished)
   end
 end

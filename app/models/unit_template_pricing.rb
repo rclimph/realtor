@@ -7,7 +7,7 @@ class UnitTemplatePricing < ActiveRecord::Base
   validates_uniqueness_of :price_type, :scope => :unit_template_id
   before_save :compute_price_fields
   
-  PRICING_TYPES = [ 'Monthly', 'Weekly', 'Daily', 'Annually' ]
+  PRICING_TYPES = [ 'Monthly Minimum 1 Month', 'Monthly Minimum 3 Months', 'Monthly Minimum 6 Months', 'Monthly Minimum 12 Months', 'Weekly', 'Daily', 'Annually' ]
   
   def enforce_price_fields
     # Price fields (sqmprice, unitprice) cannot both be filled.  Unitprice can be computed from sqmprice and vice-versa.
@@ -18,12 +18,18 @@ class UnitTemplatePricing < ActiveRecord::Base
   end
   
   def compute_price_fields
-    if self.priceperunit
-      computed_price = self.priceperunit/self.unit_template.area
-      self.pricepersqm = computed_price
-    else
-      computed_price = self.pricepersqm*self.unit_template.area
-      self.priceperunit = computed_price
+    if self.area_exists
+      if self.priceperunit
+        computed_price = self.priceperunit/self.unit_template.area
+        self.pricepersqm = computed_price
+      else
+        computed_price = self.pricepersqm*self.unit_template.area
+        self.priceperunit = computed_price
+      end
     end
   end
+    
+  def area_exists
+    return self.unit_template.area
+  end 
 end

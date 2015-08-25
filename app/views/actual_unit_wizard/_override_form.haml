@@ -1,0 +1,25 @@
+= simple_form_for [@building, @actual_unit], url: wizard_path, method: :put do |f|
+  .row
+    .panel
+      .panel.panel-default
+        .panel-heading
+          Override Default Template Values
+        .panel-body
+          .text-muted
+            = "Adding Unit '" + @actual_unit.name + "' to " + @actual_unit.floor_humanized + " of '" + @actual_unit.building.name + "'"
+          .text-muted
+            You may override the default 
+            ="'" + @actual_unit.unit_template.name + "'"
+            template values by filling out the form below.
+          .row
+            .col-lg-12
+              = f.error_notification
+          .row
+            .col-lg-6
+              = normal_field(f, :area_override, 'Area Sqm')
+            .col-lg-3
+              %strong Furnished?
+              = f.input_field :furnished_override
+              %strong Yes
+          .row.submit-buttons
+            = f.submit "Next Step", :class => 'btn btn-info'

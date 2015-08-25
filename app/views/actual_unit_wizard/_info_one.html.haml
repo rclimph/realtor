@@ -1,0 +1,14 @@
+.panel.panel-default
+  .panel-heading
+    = "Adding Unit - " + actual_unit.name + " to " + actual_unit.floor_humanized + " of Building - " + actual_unit.building.name
+  .panel-body
+    .row
+      .col-lg-4
+        %strong Parent Unit Info:
+      .col-lg-5
+        ="Unit " + actual_unit.name + " of Unit Type " + actual_unit.unit_template.name
+    .row
+      .col-lg-4
+      .col-lg-5
+        =actual_unit.area_override.to_s + " sqm, "
+        =actual_unit.furnished_override ? "Furnished" : "Unfurnished"

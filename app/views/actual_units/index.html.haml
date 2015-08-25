@@ -45,6 +45,26 @@
                     .row.indented
                       .col-lg-10.bottombordered
                         %span.badge= floor
+                    - units_this_floor = @building.units_on_floor(floor)
+                    - if units_this_floor.empty?
+                      .row.indented
+                        No Units This Floor
+                    - else
+                      .row.indented
+                        %table.table.table-striped.table-bordered
+                          %thead
+                            %tr
+                              %th Unit Number
+                              %th Area
+                              %th Unit Template Type
+                              %th Actions
+                          %tbody
+                            - units_this_floor.each do |unit|
+                              %tr
+                                %td= unit.name
+                                %td= unit.area_override
+                                %td= unit.unit_template.name
+                                %td= link_to "Edit", edit_building_actual_unit_path(@building.id, unit.id)             
           .row.indented
             .col-sm-10
               = link_to new_building_actual_unit_path(@building.id), :class => 'btn btn-primary' do

@@ -1,0 +1,52 @@
+= simple_form_for @actual_unit, url: wizard_path, method: :put do |f|
+  .row
+    = render partial: "info_one", :locals => { :actual_unit => @actual_unit }
+  .row
+    .panel.panel-default
+      .panel-heading
+        Available Pricings For Unit # 
+        = @actual_unit.name
+      .panel-body
+        = f.simple_fields_for :actual_unit_pricings do |sub|
+          .nested-fields
+            .row
+              .col-lg-4
+                %strong
+                  - unless sub.object.price_type.nil?
+                    = "Price Type: " + sub.object.price_type
+                    = sub.hidden_field :price_type
+              .col-lg-2
+                = radio_buttons_inline(sub, :pricing_basis, [ 'Price Per Sqm', 'Price Per Unit' ], 'Pricing Basis')
+              .col-lg-3
+                = normal_field(sub, :price, 'Price')
+    .panel.panel-default
+      .panel-heading
+        Pricings for Subunits
+      .panel-body
+        = f.simple_fields_for :children do |child|
+          .panel.panel-default
+            .panel-heading
+              %strong
+                = "Pricing For Sub Unit #" + child.object.name
+            .panel-body
+              = child.simple_fields_for :actual_unit_pricings do |child_price|
+                .nested-fields
+                  .row
+                    .col-lg-4
+                      %strong
+                        = "Price Type: " + child_price.object.price_type
+                    .col-lg-2
+                      = normal_field(child_price, :pricepersqm, 'Price Per Sqm')
+                    .col-lg-3
+                      = normal_field(child_price, :priceperunit, 'Price Per Unit')
+  .row.submit-buttons
+    = f.submit "Next Step", :class => 'btn btn-info'
+  .row
+    %strong Child Units
+    - number = 0
+    - @actual_unit.children.each do |c|
+      - number += 1
+      .row
+        = "Child: " + number.to_s + " is " + c.name.to_s + " DONE"
+  .row
+    END NOW

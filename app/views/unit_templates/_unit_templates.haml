@@ -13,7 +13,7 @@
       .row.indented
         = link_to edit_building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
           Edit
-        = link_to building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default' do
+        = link_to building_unit_template_path(@building, t), :class => 'btn btn-xs btn-default disabled' do
           Mergable Units
         = link_to 'Delete', building_unit_template_path(@building, t), :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-xs btn-default'
       .row.indented
